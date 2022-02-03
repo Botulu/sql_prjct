@@ -821,6 +821,7 @@ Insert into PRODUCTS (PRODUCT_ID,PRODUCT_NAME,RATING_P,PRICE) values ('44','ASUS
 select *
 from products
 where rating_p in (3,4) and price<1000;
+
 /*--
 Вывести first_name, last_name сотрудников, у которых first_name начинается
 на букву P и в last_name есть буква r.
@@ -828,6 +829,7 @@ where rating_p in (3,4) and price<1000;
 select first_name, last_name
 from employees
 where first_name like 'P%' and last_name like '%r%';
+
 /*--
 Вывести значение столбцов employee_id, department_id, first_name, last_name,
 job_id, salary, department_id сотрудников, у которых зарплата salary>9000 и
@@ -836,6 +838,7 @@ job_id, salary, department_id сотрудников, у которых зарп
 select employee_id, department_id, first_name, last_name, job_id, salary, department_id
 from employees
 where salary>9000 and department_id in (50,80,100);
+
 /*--
 Вывести содержимое столбца street_address в таблице Locations тех строк,
 у которых значение этого столбца начинается не с цифры
@@ -843,12 +846,12 @@ where salary>9000 and department_id in (50,80,100);
 select street_address
 from locations
 where street_address between 'A' and 'Z'
+
 /*--
 Вывести значения столбцов employee_id, department_id, first_name, last_name,
 job_id, salary, bonus содержит размер премии, которая вычисляется по формуле:
 Salary * (1+0.1*rating_e). Выводимые данные упорядочить по размеру премии.
 --*/
-
 select employee_id,department_id, first_name, last_name, job_id, salary, (salary*(1+0.1*rating_e)) as bonus
 from employees
 order by bonus desc;
@@ -870,6 +873,7 @@ select job_id
 from jobs
 where (max_salary-min_salary)=(select min(max_salary-min_salary)
 from jobs);
+
 /*--
 Вывести названия городов, имеющих почтовые индексы 00989, 3095, M5V 2L7, 98199,
 и названия отделов, расположенных в этих городах.
@@ -882,6 +886,7 @@ where lc.location_id in(select location_id
 from departments
 group by location_id
 having count(department_id)>0) and lc.postal_code in ('00989', '3095', 'M5V 2L7', '98199');
+
 /*--
 Вывести количество сотрудников и суммарную зарплату сотрудников, работающих в каждом
 городе. Должны быть выведены данные о всех городах из таблицы Locations.
